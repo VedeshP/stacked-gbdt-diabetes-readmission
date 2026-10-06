@@ -1,0 +1,12 @@
+# Local environment. Kaggle's Python image already ships these.
+pandas
+numpy
+scikit-learn
+xgboost
+lightgbm
+catboost
+shap
+optuna
+matplotlib
+imbalanced-learn
+kaggle

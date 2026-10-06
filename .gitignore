@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project data (re-downloadable; uploaded to Kaggle separately)
+data/
+kaggle_dataset/*.csv
+build/

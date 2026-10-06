@@ -1,0 +1,82 @@
+{
+  "data_dir": "B:\\new_projects\\ml_project\\stacked-gbdt-diabetes-readmission\\data\\raw",
+  "n_encounters": 101766,
+  "n_columns_raw": 50,
+  "n_patients": 71518,
+  "duplicate_encounter_ids": 0,
+  "encounters_per_patient": {
+    "mean": 1.4229424760200229,
+    "median": 1.0,
+    "max": 40,
+    "share_patients_with_multiple": 0.23452837048015884,
+    "share_encounters_from_repeat_patients": 0.4620501935813533
+  },
+  "target_raw_counts": {
+    "NO": 54864,
+    ">30": 35545,
+    "<30": 11357
+  },
+  "target_binary": {
+    "definition": "readmitted == '<30' -> 1, else 0",
+    "n_positive": 11357,
+    "n_negative": 90409,
+    "positive_rate": 0.11159915885462728
+  },
+  "expired_or_hospice": {
+    "discharge_ids_expired": [
+      11,
+      19,
+      20,
+      21
+    ],
+    "discharge_ids_hospice": [
+      13,
+      14
+    ],
+    "n_encounters": 2423,
+    "n_positive_among_them": 43,
+    "positive_rate_after_exclusion": 0.11388824577474005,
+    "n_encounters_after_exclusion": 99343
+  },
+  "first_encounter_per_patient": {
+    "n": 71518,
+    "positive_rate": 0.08799183422355211
+  },
+  "missing_fraction_nonzero": {
+    "weight": 0.9685847925633315,
+    "medical_specialty": 0.49082208203132677,
+    "payer_code": 0.395574160328597,
+    "race": 0.022335554114340742,
+    "diag_3": 0.013983059174970029,
+    "diag_2": 0.0035178743391702533,
+    "diag_1": 0.0002063557573256294
+  },
+  "lab_not_performed_fraction": {
+    "A1Cresult": 0.8327732248491637,
+    "max_glu_serum": 0.9474677200636755
+  },
+  "n_categorical_columns": 39,
+  "near_constant_columns": [
+    "glyburide-metformin",
+    "nateglinide",
+    "chlorpropamide",
+    "acarbose",
+    "miglitol",
+    "tolazamide",
+    "acetohexamide",
+    "tolbutamide",
+    "troglitazone",
+    "metformin-rosiglitazone",
+    "metformin-pioglitazone",
+    "glipizide-metformin",
+    "glimepiride-pioglitazone",
+    "citoglipton",
+    "examide"
+  ],
+  "near_constant_threshold": 0.99,
+  "icd9_unique": {
+    "diag_1": 716,
+    "diag_2": 748,
+    "diag_3": 789
+  }
+}
