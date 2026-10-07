@@ -1,0 +1,8 @@
+{
+  "xgb": 1.6689300537109375e-06,
+  "lgbm": 3.3084646133829665e-14,
+  "cat": 6.661338147750939e-15,
+  "stack": 4.974671674595754e-08,
+  "n_test_encounters_checked": 500,
+  "note": "max |centred logit - centred sum of SHAP| per model, seed-42 stacker from the full Kaggle run"
+}

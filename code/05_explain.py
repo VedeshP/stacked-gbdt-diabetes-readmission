@@ -12,6 +12,7 @@ Outputs (TEST sample of N_SHAP rows):
   results/shap_summary_<best>.png              beeswarm for the best single model
   results/shap_top_features_<best>.png         top-20 grouped bar for the best single model
   results/shap_top_features_stack.png          top-20 grouped bar for the stack
+  results/shap_additivity_check.json           max deviation of SHAP sums from model log-odds
 """
 import warnings
 
@@ -20,11 +21,11 @@ import numpy as np
 import pandas as pd
 import shap
 
-from common import (FAST, SEED, STACKER_FILE, load_dataset, results_path, set_seed,
+from common import (FAST, SEED, STACKER_FILE, load_dataset, results_path, save_json, set_seed,
                     setup_matplotlib, train_test)
 from evaluation import plot_hbar
 from features import original_feature
-from models import MODEL_LABELS
+from models import MODEL_LABELS, logit
 
 N_SHAP = 300 if FAST else 2000
 warnings.filterwarnings("ignore", message=".*LightGBM binary classifier with TreeExplainer.*")
@@ -73,6 +74,8 @@ def main():
 
     weights = stacker.final_estimator_.coef_.ravel()
     stack_phi = None
+    stack_sum = 0.0
+    additivity = {}
     for name, pipe, w in zip(stacker.names_, stacker.estimators_, weights):
         sv, Xt = shap_values(name, pipe, sample)
         imp = pd.DataFrame({"feature": Xt.columns, "mean_abs_shap": np.abs(sv).mean(axis=0)})
@@ -85,6 +88,10 @@ def main():
             results_path(f"shap_importance_grouped_{name}.csv"), index=False)
 
         contrib = w * g.reindex(columns=input_cols, fill_value=0.0)
+        # additivity: centred logit(p) must equal centred sum of SHAP values
+        z, s_sum = logit(pipe.predict_proba(sample)[:, 1]), sv.sum(axis=1)
+        additivity[name] = float(np.abs((z - z.mean()) - (s_sum - s_sum.mean())).max())
+        stack_sum = stack_sum + w * s_sum
         stack_phi = contrib if stack_phi is None else stack_phi + contrib
 
         if name == best:
@@ -95,6 +102,11 @@ def main():
             plot_hbar(plt, gimp.index, gimp.values, f"shap_top_features_{name}.png",
                       f"Mean |SHAP| (log-odds), {MODEL_LABELS[name]}")
         print(f"[shap] {name}: top-5 = {list(gimp.index[:5])}", flush=True)
+
+    z = logit(stacker.predict_proba(sample)[:, 1])
+    additivity["stack"] = float(np.abs((z - z.mean()) - (stack_sum - stack_sum.mean())).max())
+    additivity["n_test_encounters_checked"] = len(sample)
+    save_json(additivity, "shap_additivity_check.json")
 
     stack_imp = stack_phi.abs().mean().sort_values(ascending=False)
     stack_imp.rename("mean_abs_shap").rename_axis("feature").reset_index().to_csv(
