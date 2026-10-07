@@ -14,6 +14,8 @@ Usage (from the repo root):
   python tools/kaggle_nb.py push --all --gpu --wait # whole pipeline, wait, download results
   python tools/kaggle_nb.py status 01
   python tools/kaggle_nb.py fetch 01 --sync         # download outputs, copy results/ into repo
+  python tools/kaggle_nb.py push 02 04 05 --include results/best_params.json   # reuse tuned params
+  python tools/kaggle_nb.py push --all --env N_TRIALS=80 N_SEEDS=5             # change budgets
 
 Each kernel is a fresh machine: if a script needs files produced by an earlier
 script (e.g. 03 needs 02's processed data), include the earlier script too.
@@ -110,6 +112,7 @@ def _git_info():
 
 def build_notebook(scripts, cfg, args):
     commit = _git_info()
+    env_overrides = dict(kv.split("=", 1) for kv in (args.env or []))
     built = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     names = ", ".join(p.name for p in scripts)
     cells = [_cell("markdown",
@@ -126,7 +129,9 @@ os.chdir("{KAGGLE_WORKDIR}")
 os.makedirs("code", exist_ok=True)
 os.makedirs("results", exist_ok=True)
 sys.path.insert(0, os.path.abspath("code"))
-env = {{"python": platform.python_version(), "git_commit": "{commit}", "scripts": {json.dumps([p.name for p in scripts])}}}
+overrides = {json.dumps(env_overrides)}
+os.environ.update(overrides)
+env = {{"python": platform.python_version(), "git_commit": "{commit}", "scripts": {json.dumps([p.name for p in scripts])}, "env_overrides": overrides}}
 for pkg in {json.dumps(REPORT_PACKAGES)}:
     try:
         env[pkg] = version(pkg)
@@ -146,6 +151,13 @@ print(json.dumps(env, indent=2))
     for path in helper_modules() + list(scripts):
         src = path.read_text(encoding="utf-8")
         cells.append(_cell("code", f"%%writefile code/{path.name}\n{src}"))
+
+    for rel in args.include or []:
+        path = (REPO_ROOT / rel).resolve()
+        rel_posix = path.relative_to(REPO_ROOT).as_posix()
+        folder = os.path.dirname(rel_posix) or "."
+        cells.append(_cell("code", f"os.makedirs({folder!r}, exist_ok=True)"))
+        cells.append(_cell("code", f"%%writefile {rel_posix}\n{path.read_text(encoding='utf-8')}"))
 
     for path in scripts:
         cells.append(_cell("markdown", f"## Run `{path.name}`"))
@@ -280,6 +292,10 @@ def main():
         sp.add_argument("--internet", action="store_true", help="enable internet")
         sp.add_argument("--pip", nargs="+", metavar="PKG", help="pip install before running (turns on internet)")
         sp.add_argument("--public", action="store_true", help="make the kernel public (default private)")
+        sp.add_argument("--include", nargs="+", metavar="FILE",
+                        help="repo text files to recreate on Kaggle, e.g. results/best_params.json")
+        sp.add_argument("--env", nargs="+", metavar="KEY=VALUE",
+                        help="environment variables for the run, e.g. N_TRIALS=60 N_SEEDS=5")
         if name == "push":
             sp.add_argument("--wait", action="store_true", help="poll until finished, then fetch --sync")
             sp.add_argument("--poll", type=int, default=30, help="seconds between status checks")

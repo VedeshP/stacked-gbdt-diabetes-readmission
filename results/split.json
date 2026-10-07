@@ -1,0 +1,45 @@
+{
+  "fast_mode": false,
+  "n_encounters_raw": 101766,
+  "exclude_expired_or_hospice": true,
+  "n_excluded_expired_or_hospice": 2423,
+  "n_encounters_used": 99343,
+  "split_method": "StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42) on patient_nbr; fold 0 = test",
+  "train": {
+    "n_encounters": 79625,
+    "n_patients": 55952,
+    "n_positive": 9126,
+    "positive_rate": 0.11461224489795918
+  },
+  "test": {
+    "n_encounters": 19718,
+    "n_patients": 14038,
+    "n_positive": 2188,
+    "positive_rate": 0.11096460087229942
+  },
+  "test_fraction_encounters": 0.1984840401437444,
+  "patients_in_both_train_and_test": 0,
+  "dropped_columns": [
+    "encounter_id",
+    "patient_nbr",
+    "weight",
+    "glyburide-metformin",
+    "nateglinide",
+    "chlorpropamide",
+    "acarbose",
+    "miglitol",
+    "tolazamide",
+    "acetohexamide",
+    "tolbutamide",
+    "troglitazone",
+    "metformin-rosiglitazone",
+    "metformin-pioglitazone",
+    "glipizide-metformin",
+    "glimepiride-pioglitazone",
+    "citoglipton",
+    "examide"
+  ],
+  "n_features": 36,
+  "n_numeric_features": 14,
+  "n_categorical_features": 22
+}

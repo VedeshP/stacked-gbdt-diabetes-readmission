@@ -223,3 +223,4 @@ __marimo__/
 data/
 kaggle_dataset/*.csv
 build/
+results_fast/

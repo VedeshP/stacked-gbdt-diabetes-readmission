@@ -27,8 +27,16 @@ On Kaggle the scripts find the data automatically under `/kaggle/input` (private
 
 ```bash
 pip install -r requirements.txt
-python code/01_eda.py
+python code/01_eda.py         # EDA -> results/eda.json + figures
+python code/02_preprocess.py  # features + patient-level split -> data/processed/
+python code/03_baselines.py   # Optuna-tuned LR/RF/XGB/LGBM/CatBoost + class-weight ablation
+python code/04_stacking.py    # grouped OOF stacking vs average vs singles, calibration, thresholds
+python code/05_explain.py     # SHAP for base models and the stack
 ```
+
+Quick smoke test (15% of patients, tiny budgets, writes to `results_fast/`): set `FAST=1` before running the scripts.
+
+Run settings are environment variables (defaults in `code/common.py`): `N_TRIALS` (40), `TUNE_TIMEOUT` seconds per model (900), `TUNE_FOLDS` (3), `CV_FOLDS` (5), `N_SEEDS` (3), `N_BOOT` (1000), `USE_GPU` (auto), `EXCLUDE_EXPIRED` (1).
 
 ## Run on Kaggle
 
@@ -41,6 +49,8 @@ python tools/kaggle_nb.py push 02 03 04 --gpu      # several scripts in one kern
 python tools/kaggle_nb.py push --all --gpu --wait  # full pipeline
 python tools/kaggle_nb.py status 01
 python tools/kaggle_nb.py fetch 01 --sync          # download outputs, copy results/ into the repo
+python tools/kaggle_nb.py push 02 04 05 --include results/best_params.json  # reuse tuned params
+python tools/kaggle_nb.py push --all --env N_TRIALS=80 N_SEEDS=5            # change budgets
 ```
 
 Each kernel starts from a clean machine, so include any earlier script whose outputs a later one needs. Settings (Kaggle username, dataset id, slug prefix) live in `tools/kaggle_config.json`.

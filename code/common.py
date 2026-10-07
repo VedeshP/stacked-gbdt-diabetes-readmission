@@ -15,8 +15,40 @@ import pandas as pd
 
 SEED = 42
 
+
+def _env_int(name, default):
+    return int(os.environ.get(name, default))
+
+
+# Run configuration (override with environment variables).
+# FAST=1 is a local smoke test: subsampled data, tiny budgets, writes to results_fast/.
+FAST = os.environ.get("FAST", "0") == "1"
+N_TRIALS = _env_int("N_TRIALS", 3 if FAST else 40)            # Optuna trials per model
+TUNE_TIMEOUT = _env_int("TUNE_TIMEOUT", 60 if FAST else 900)   # seconds per model
+TUNE_FOLDS = _env_int("TUNE_FOLDS", 3)                          # inner folds used while tuning
+CV_FOLDS = _env_int("CV_FOLDS", 5)                              # inner OOF folds
+N_SEEDS = _env_int("N_SEEDS", 1 if FAST else 3)                 # repeats for mean +- std
+N_BOOT = _env_int("N_BOOT", 50 if FAST else 1000)               # bootstrap resamples
+N_JOBS = _env_int("N_JOBS", -1)
+FAST_N_ROWS = 15000
+SEEDS = [SEED + i for i in range(N_SEEDS)]
+
+
+def gpu_available() -> bool:
+    if os.environ.get("USE_GPU") is not None:
+        return os.environ["USE_GPU"] == "1"
+    import shutil
+    import subprocess
+    if not shutil.which("nvidia-smi"):
+        return False
+    return subprocess.run(["nvidia-smi"], capture_output=True).returncode == 0
+
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
-RESULTS_DIR = REPO_ROOT / "results"
+RESULTS_DIR = REPO_ROOT / ("results_fast" if FAST else "results")
+PROCESSED_DIR = REPO_ROOT / "data" / ("processed_fast" if FAST else "processed")
+DATASET_FILE = PROCESSED_DIR / "dataset.joblib"
+STACKER_FILE = PROCESSED_DIR / "stacker_seed42.joblib"
 RAW_FILE = "diabetic_data.csv"
 IDS_FILE = "IDS_mapping.csv"
 
@@ -78,6 +110,32 @@ def save_json(obj, name: str) -> Path:
     return path
 
 
+def load_json(name: str):
+    with open(results_path(name), encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_dataset(obj) -> Path:
+    import joblib
+    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+    joblib.dump(obj, DATASET_FILE)
+    return DATASET_FILE
+
+
+def load_dataset():
+    """Processed dataset from 02_preprocess.py (dict of X, y, groups, is_test, ...)."""
+    import joblib
+    if not DATASET_FILE.exists():
+        raise FileNotFoundError(f"{DATASET_FILE} missing - run code/02_preprocess.py first")
+    return joblib.load(DATASET_FILE)
+
+
+def train_test(ds):
+    tr, te = ~ds["is_test"], ds["is_test"]
+    return (ds["X"][tr].reset_index(drop=True), ds["y"][tr], ds["groups"][tr],
+            ds["X"][te].reset_index(drop=True), ds["y"][te], ds["groups"][te])
+
+
 def _json_default(o):
     if isinstance(o, (np.integer,)):
         return int(o)
@@ -93,6 +151,8 @@ PALETTE = {
     "series1": "#2a78d6",  # blue
     "series2": "#eb6834",  # orange
     "series3": "#1baf7a",  # aqua
+    "series4": "#eda100",  # yellow
+    "series5": "#e87ba4",  # magenta
     "text": "#0b0b0b",
     "text_muted": "#52514e",
     "grid": "#e4e3df",
