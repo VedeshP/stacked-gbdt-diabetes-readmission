@@ -1,0 +1,86 @@
+{
+  "params": {
+    "lr": {
+      "C": 0.0796433554014517
+    },
+    "rf": {
+      "n_estimators": 300,
+      "max_depth": 12,
+      "min_samples_leaf": 5,
+      "max_features": 0.2955455950789638
+    },
+    "xgb": {
+      "n_estimators": 400,
+      "learning_rate": 0.03135138534055296,
+      "max_depth": 5,
+      "min_child_weight": 2.401685405066297,
+      "subsample": 0.8317247442313338,
+      "colsample_bytree": 0.40450390958022575,
+      "reg_lambda": 0.10151123541362836,
+      "reg_alpha": 0.15236215735278885
+    },
+    "lgbm": {
+      "n_estimators": 500,
+      "learning_rate": 0.0221686006920873,
+      "num_leaves": 40,
+      "min_child_samples": 18,
+      "subsample": 0.8471889405687342,
+      "colsample_bytree": 0.4323746402477565,
+      "reg_lambda": 0.01349994815607303,
+      "reg_alpha": 0.05650965138030809
+    },
+    "cat": {
+      "iterations": 600,
+      "learning_rate": 0.05,
+      "depth": 6,
+      "l2_leaf_reg": 3.0,
+      "random_strength": 1.0,
+      "bagging_temperature": 0.5
+    }
+  },
+  "tuning": {
+    "lr": {
+      "best_cv_pr_auc": 0.2103918726786225,
+      "trials": {
+        "COMPLETE": 27,
+        "PRUNED": 13
+      },
+      "seconds": 408.6
+    },
+    "rf": {
+      "best_cv_pr_auc": 0.222260068453199,
+      "trials": {
+        "COMPLETE": 9,
+        "PRUNED": 3
+      },
+      "seconds": 1031.2
+    },
+    "xgb": {
+      "best_cv_pr_auc": 0.23026236633745645,
+      "trials": {
+        "COMPLETE": 21,
+        "PRUNED": 19
+      },
+      "seconds": 593.1
+    },
+    "lgbm": {
+      "best_cv_pr_auc": 0.23307942562731568,
+      "trials": {
+        "COMPLETE": 29,
+        "PRUNED": 11
+      },
+      "seconds": 498.8
+    },
+    "cat": {
+      "best_cv_pr_auc": 0.23281973379583976,
+      "trials": {
+        "COMPLETE": 4
+      },
+      "seconds": 1036.6
+    }
+  },
+  "objective": "mean PR-AUC over 3 grouped folds",
+  "n_trials_budget": 40,
+  "timeout_s_per_model": 900,
+  "pos_weight": 7.7250712250712255
+}

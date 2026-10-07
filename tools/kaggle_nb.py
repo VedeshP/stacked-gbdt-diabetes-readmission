@@ -92,7 +92,10 @@ def default_slug(cfg, scripts, use_all):
 # --------------------------------------------------------------------------- notebook
 
 def _cell(cell_type, source):
-    cell = {"cell_type": cell_type, "metadata": {}, "source": source.splitlines(keepends=True)}
+    import hashlib
+    cell_id = hashlib.sha1(f"{cell_type}:{source}".encode()).hexdigest()[:12]
+    cell = {"id": cell_id, "cell_type": cell_type, "metadata": {},
+            "source": source.splitlines(keepends=True)}
     if cell_type == "code":
         cell.update(execution_count=None, outputs=[])
     return cell
@@ -131,7 +134,7 @@ os.makedirs("results", exist_ok=True)
 sys.path.insert(0, os.path.abspath("code"))
 overrides = {json.dumps(env_overrides)}
 os.environ.update(overrides)
-env = {{"python": platform.python_version(), "git_commit": "{commit}", "scripts": {json.dumps([p.name for p in scripts])}, "env_overrides": overrides}}
+env = {{"cpu_count": os.cpu_count(), "platform": platform.platform(), "python": platform.python_version(), "git_commit": "{commit}", "scripts": {json.dumps([p.name for p in scripts])}, "env_overrides": overrides}}
 for pkg in {json.dumps(REPORT_PACKAGES)}:
     try:
         env[pkg] = version(pkg)
@@ -264,9 +267,18 @@ def fetch(kernel_id, slug, sync):
         print(f"synced {n} files into {target}")
 
 
-def wait(kernel_id, poll):
+def wait(kernel_id, poll, max_failures=10):
+    failures = 0
     while True:
-        state, _ = status(kernel_id)
+        try:
+            state, _ = status(kernel_id)
+            failures = 0
+        except SystemExit:  # transient network/API error: retry
+            failures += 1
+            if failures >= max_failures:
+                raise
+            time.sleep(poll)
+            continue
         if state in ("complete", "error", "cancelacknowledged", "cancelrequested"):
             return state
         time.sleep(poll)

@@ -1,5 +1,5 @@
 {
-  "data_dir": "B:\\new_projects\\ml_project\\stacked-gbdt-diabetes-readmission\\data\\raw",
+  "data_dir": "/kaggle/input/datasets/vedeshp/diabetes-130-us-hospitals-uci-296",
   "n_encounters": 101766,
   "n_columns_raw": 50,
   "n_patients": 71518,
