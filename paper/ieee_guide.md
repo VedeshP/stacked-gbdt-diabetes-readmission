@@ -29,22 +29,24 @@ A practical guide for turning `paper/draft.md` into an IEEE conference paper in 
 
 ## 3. Structure of a ~6-page conference paper
 
-Typical layout for this project (adapt to the conference page limit):
+Layout agreed with the professor: **6 pages, pages 1–5 for content and page 6 mostly references.** An IEEE two-column page holds roughly 900–1,000 words of plain text, so five pages with three tables and three figures leave about 3,300–3,600 words of text. Adapt this to the conference page limit:
 
-| Section | Target length | Content |
-|---|---|---|
-| Title + authors | — | Specific and informative; avoid unexplained abbreviations in the title |
-| Abstract | 150–250 words, one paragraph | Problem, method, main numbers, conclusion; no citations, no equations |
-| Index Terms | 4–8 terms, alphabetical | Required by the style manual |
-| I. Introduction | ~0.75 page | Motivation, gap, contributions list, paper outline |
-| II. Related Work | ~0.5 page | Studies on this dataset with how they split data and what they report |
-| III. Dataset and Preprocessing | ~0.75 page | Source, outcome, cohort, features, patient-level split |
-| IV. Methodology | ~1 page | Pipelines, grouped OOF stacking, imbalance, calibration, thresholds, SHAP |
-| V. Experimental Setup | ~0.5 page | Metrics, tuning, protocol, implementation |
-| VI. Results and Discussion | ~1.5 pages | Tables and figures, ablations, calibration, SHAP, comparison with prior work |
-| VII. Limitations and Conclusion | ~0.4 page | 1999-2008 data, single source, no external validation, not for clinical use |
-| Acknowledgment | short | Funding, help, **AI-use disclosure** (Section 6) |
-| References | ~0.5 page | IEEE numbered style |
+| Section | Target length | Words (approx.) | Content |
+|---|---|---|---|
+| Title + authors | — | — | Specific and informative; avoid unexplained abbreviations in the title |
+| Abstract | one paragraph | 150–250 | Problem, method, main numbers, conclusion; no citations, no equations |
+| Index Terms | 4–8 terms, alphabetical | — | Required by the style manual |
+| I. Introduction | ~0.6 page | ~500 | Motivation, gap, contributions list |
+| II. Related Work | ~0.4 page | ~350 | Studies on this dataset with how they split data and what they report |
+| III. Dataset and Preprocessing | ~0.5 page (+ Table I/II) | ~350 | Source, outcome, cohort, features, patient-level split |
+| IV. Methodology | ~0.7 page | ~600 | Pipelines, grouped OOF stacking, imbalance, calibration, thresholds, SHAP |
+| V. Experimental Setup | ~0.3 page (+ Table III) | ~300 | Metrics, tuning, protocol, implementation |
+| VI. Results and Discussion | ~1.6 pages incl. tables/figures | ~800–900 | Comparison, ablations, calibration, SHAP, comparison with prior work |
+| VII. Limitations and Conclusion | ~0.3 page | ~250–300 | 1999-2008 data, single source, no external validation, not for clinical use |
+| Acknowledgment | short | ~60 | Funding, help, **AI-use disclosure** (Section 6) |
+| References | page 6 | — | IEEE numbered style; 28 entries fit on about one page |
+
+The words-per-page figure is a rule of thumb for 10-pt two-column IEEE templates, not an IEEE rule. Paste the text into the template early and check the real page count.
 
 ## 4. Writing conventions (IEEE style)
 
