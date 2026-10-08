@@ -1,4 +1,4 @@
-Patient-Grouped, Calibrated Stacking of Gradient-Boosted Trees for 30-Day Readmission Prediction in Diabetic Inpatients
+Patient-Level Evaluation of Gradient-Boosted Ensembles for Diabetic Readmission Prediction
 
 Vedesh Pandya
 
