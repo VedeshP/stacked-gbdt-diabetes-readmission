@@ -20,16 +20,30 @@ from sklearn.model_selection import StratifiedGroupKFold
 
 from common import (EXPIRED_IDS, FAST, FAST_N_ROWS, HOSPICE_IDS, SEED, TARGET,
                     load_raw, results_path, save_dataset, save_json, set_seed)
-from features import DROP_COLS, NEAR_CONSTANT_DRUGS, build_features, split_columns
+from features import (DROP_COLS, HISTORY_COLS, ICD3_COLS, NEAR_CONSTANT_DRUGS,
+                      build_features, build_history_features, split_columns)
 
 EXCLUDE_EXPIRED = os.environ.get("EXCLUDE_EXPIRED", "1") == "1"
+# FEATURE_SET=base drops the patient-history and 3-digit ICD-9 features (ablation)
+FEATURE_SET = os.environ.get("FEATURE_SET", "full")
 N_OUTER_FOLDS = 5
 
 
 def main():
     set_seed()
-    df = load_raw()
+    df = load_raw().sort_values("encounter_id").reset_index(drop=True)
     n_raw = len(df)
+
+    # encounter_id order as time order: if a patient has a later encounter, the
+    # earlier one should almost never be labelled 'NO' (no readmission).
+    prev_label = df.groupby("patient_nbr")["readmitted"].shift(1).dropna()
+    save_json({"n_encounters_with_earlier_encounter": int(len(prev_label)),
+               "label_of_previous_encounter_share": prev_label.value_counts(normalize=True).to_dict(),
+               "note": "share of 'NO' close to 0 supports encounter_id as time order"},
+              "encounter_order_check.json")
+
+    # history uses ALL earlier encounters of the patient, computed before any row is removed
+    history = build_history_features(df, TARGET)
 
     excluded = df["discharge_disposition_id"].isin(EXPIRED_IDS + HOSPICE_IDS)
     if EXCLUDE_EXPIRED:
@@ -40,9 +54,13 @@ def main():
         rng.shuffle(patients)
         keep = patients[: int(len(patients) * FAST_N_ROWS / len(df))]
         df = df[df["patient_nbr"].isin(keep)]
-    df = df.sort_values("encounter_id").reset_index(drop=True)
+    df = df.sort_values("encounter_id")
 
-    X = build_features(df)
+    X = pd.concat([build_features(df), history.loc[df.index]], axis=1)
+    if FEATURE_SET == "base":
+        X = X.drop(columns=HISTORY_COLS + ICD3_COLS)
+    X = X.reset_index(drop=True)
+    df = df.reset_index(drop=True)
     y = df[TARGET].to_numpy()
     groups = df["patient_nbr"].to_numpy()
 
@@ -69,6 +87,7 @@ def main():
 
     save_json({
         "fast_mode": FAST,
+        "feature_set": FEATURE_SET,
         "n_encounters_raw": n_raw,
         "exclude_expired_or_hospice": EXCLUDE_EXPIRED,
         "n_excluded_expired_or_hospice": int(excluded.sum()) if EXCLUDE_EXPIRED else 0,

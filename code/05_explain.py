@@ -45,7 +45,7 @@ def shap_values(name, pipe, X):
         sv = model.model_.get_feature_importance(Pool(Xt, cat_features=model.cat_features_),
                                                  type="ShapValues")
         return sv[:, :-1], Xt
-    sv = shap.TreeExplainer(model).shap_values(Xt)
+    sv = shap.TreeExplainer(model).shap_values(Xt.to_numpy())  # array: no feature-name checks
     if isinstance(sv, list):  # older LightGBM/shap return [neg, pos]
         sv = sv[1]
     if sv.ndim == 3:

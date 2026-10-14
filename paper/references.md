@@ -14,7 +14,7 @@ REFERENCES
 
 [7] T. Chen and C. Guestrin, "XGBoost: A scalable tree boosting system," in Proc. 22nd ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., 2016, pp. 785–794, doi: 10.1145/2939672.2939785.
 
-[8] G. Ke, Q. Meng, T. Finley, T. Wang, W. Chen, W. Ma, Q. Ye, and T.-Y. Liu, "LightGBM: A highly efficient gradient boosting decision tree," in Adv. Neural Inf. Process. Syst., vol. 30, 2017, pp. 3146–3154. [Online]. Available: https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html
+[8] G. Ke, Q. Meng, T. Finley, T. Wang, W. Chen, W. Ma, Q. Ye, and T.-Y. Liu, "LightGBM: A highly efficient gradient boosting decision tree," in Adv. Neural Inf. Process. Syst., vol. 30, 2017. [Online]. Available: https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html
 
 [9] L. Prokhorenkova, G. Gusev, A. Vorobev, A. V. Dorogush, and A. Gulin, "CatBoost: Unbiased boosting with categorical features," in Adv. Neural Inf. Process. Syst., vol. 31, 2018, pp. 6638–6648. [Online]. Available: https://proceedings.neurips.cc/paper/2018/hash/14491b756b3a51daac41c24863285549-Abstract.html
 
@@ -50,17 +50,26 @@ REFERENCES
 
 [25] T. Akiba, S. Sano, T. Yanase, T. Ohta, and M. Koyama, "Optuna: A next-generation hyperparameter optimization framework," in Proc. 25th ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., 2019, pp. 2623–2631, doi: 10.1145/3292500.3330701.
 
-[26] J. Bergstra, R. Bardenet, Y. Bengio, and B. Kégl, "Algorithms for hyper-parameter optimization," in Adv. Neural Inf. Process. Syst., vol. 24, 2011, pp. 2546–2554. [Online]. Available: https://proceedings.neurips.cc/paper/2011/hash/86e8f7ab32cfd12577bc2619bc635690-Abstract.html
+[26] J. Bergstra, R. Bardenet, Y. Bengio, and B. Kégl, "Algorithms for hyper-parameter optimization," in Adv. Neural Inf. Process. Syst., vol. 24, 2011. [Online]. Available: https://proceedings.neurips.cc/paper/2011/hash/86e8f7ab32cfd12577bc2619bc635690-Abstract.html
 
 [27] B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap. New York, NY, USA: Chapman & Hall, 1993.
 
 [28] G. S. Collins et al., "TRIPOD+AI statement: Updated guidance for reporting clinical prediction models that use regression or machine learning methods," BMJ, vol. 385, Art. no. e078378, 2024, doi: 10.1136/bmj-2023-078378.
 
 
+[29] S. S. Salim and A. A. Ibrahim, "A machine learning approach for predicting 30-day hospital readmission in patients with diabetes," Healthcare, vol. 14, no. 9, Art. no. 1185, 2026, doi: 10.3390/healthcare14091185.
+
+[30] I. Zablah, Y. Molina, and A. Garcia Loureiro, "Patient-level and temporal data leakage can inflate performance in medication recommendation models: A critical appraisal of the original KATMed publication," J. Biomed. Inform., vol. 178, Art. no. 105016, 2026, doi: 10.1016/j.jbi.2026.105016.
+
+[31] L. Wang, C. Wei, Y. Chen, D.-S. Lu, H.-X. Zhang, and M. Yang, "Machine learning-based prediction model for 30-day readmission risk in elderly patients with type 2 diabetes mellitus and heart failure: A retrospective cohort study with SHAP interpretability analysis," Front. Cardiovasc. Med., vol. 12, Art. no. 1673159, 2026, doi: 10.3389/fcvm.2025.1673159.
+
+[32] A. A. Afridi, M. Usman, D. J. Rubin, and M. R. R. Rana, "A robust and explainable framework for predicting hospital readmission in patients with diabetes," Diabetology, vol. 7, no. 10, Art. no. 197, 2026, doi: 10.3390/diabetology7100197.
+
+[33] H. Lu and S. Uddin, "Explainable stacking-based model for predicting hospital readmission for diabetic patients," Information, vol. 13, no. 9, Art. no. 436, 2022, doi: 10.3390/info13090436.
+
+
 VERIFICATION NOTES (delete before submission)
 
-Checked online on 2026-10-07: authors, title, venue, year and volume of every entry; all 19 DOIs resolve at doi.org.
-TODO-VERIFY page ranges: [7], [8], [23], [25], [26] (venue and year confirmed; page numbers not shown by the sources checked).
-TODO-VERIFY issue numbers: [1] no. 14 and [11] no. 9.
-TODO-VERIFY co-author lists of [4] and [6] (first authors confirmed).
-[18]: the journal page cites the article as 7(3):555707 while the DOI ends in 555715; use the DOI.
+Checked online on 2026-10-07 and 2026-10-14: authors, title, venue, year, volume, issue and pages or article number of every entry, using publisher pages, Crossref, Europe PMC and Semantic Scholar. All DOIs resolve at doi.org.
+NeurIPS entries without DOI ([8], [9], [13] and the TPE paper) link to the official proceedings page; page numbers for LightGBM and TPE were removed because they could not be confirmed (IEEE style allows proceedings citations without pages when a URL is given).
+Mingle (Curr. Trends Biomed. Eng. Biosci.): the journal page cites the article as 7(3):555707 while the DOI ends in 555715; the DOI is used.

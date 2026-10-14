@@ -14,6 +14,7 @@ Outputs:
   results/baselines_cv.csv                OOF metrics, mean +- std over 5 folds
   results/baselines_test.csv              TEST metrics + 95% bootstrap CI (no class weights)
   results/imbalance_ablation.csv          no weighting vs class weights (CV + TEST)
+  results/feature_ablation.csv            LightGBM with/without history and 3-digit ICD-9 features
   data/processed/preds_baselines.joblib   OOF and TEST probabilities
 """
 import time
@@ -27,7 +28,34 @@ from common import (N_BOOT, N_TRIALS, PROCESSED_DIR, SEED, TUNE_FOLDS, TUNE_TIME
                     load_dataset, results_path, save_json, set_seed, train_test)
 from evaluation import (METRICS, best_f1_threshold, classification_metrics, fold_ids_from,
                         fold_metrics, metrics_with_ci)
+from features import HISTORY_COLS, ICD3_COLS, split_columns
 from models import MODEL_LABELS, MODEL_NAMES, grouped_cv, make_pipeline, tune
+
+
+def feature_ablation(X_tr, y_tr, g_tr, X_te, y_te, g_te, params, cv):
+    """Tuned LightGBM on nested feature sets: what do history and 3-digit ICD-9 codes add?"""
+    sets = {
+        "base": [c for c in X_tr.columns if c not in HISTORY_COLS + ICD3_COLS],
+        "base + ICD-9 3-digit": [c for c in X_tr.columns if c not in HISTORY_COLS],
+        "base + patient history": [c for c in X_tr.columns if c not in ICD3_COLS],
+        "full": list(X_tr.columns),
+    }
+    rows = []
+    for name, cols in sets.items():
+        if len(cols) == X_tr.shape[1] and name != "full":
+            continue  # FEATURE_SET=base run: the extra columns do not exist
+        num, cat = split_columns(X_tr[cols])
+        pipe = make_pipeline("lgbm", num, cat, params, seed=SEED)
+        oof = cross_val_predict(pipe, X_tr[cols], y_tr, groups=g_tr, cv=cv,
+                                method="predict_proba")[:, 1]
+        thr = best_f1_threshold(y_tr, oof)
+        p_te = pipe.fit(X_tr[cols], y_tr).predict_proba(X_te[cols])[:, 1]
+        test = metrics_with_ci(y_te, p_te, g_te, thr, N_BOOT, SEED)
+        rows.append({"feature_set": name, "n_features": len(cols),
+                     **{f"cv_{m}": v for m, v in classification_metrics(y_tr, oof, thr).items()},
+                     **{f"test_{m}": v for m, v in test.items()}})
+        print(f"[features] {name}: test ROC-AUC={test['roc_auc']:.4f} PR-AUC={test['pr_auc']:.4f}", flush=True)
+    return pd.DataFrame(rows)
 
 
 def main():
@@ -96,6 +124,8 @@ def main():
     pd.DataFrame(cv_rows).to_csv(results_path("baselines_cv.csv"), index=False)
     pd.DataFrame(test_rows).to_csv(results_path("baselines_test.csv"), index=False)
     pd.DataFrame(ablation_rows).to_csv(results_path("imbalance_ablation.csv"), index=False)
+    feature_ablation(X_tr, y_tr, g_tr, X_te, y_te, g_te, best["params"]["lgbm"], cv).to_csv(
+        results_path("feature_ablation.csv"), index=False)
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     joblib.dump({"y_train": y_tr, "y_test": y_te, "fold_ids": fold_ids, "preds": preds},
                 PROCESSED_DIR / "preds_baselines.joblib")

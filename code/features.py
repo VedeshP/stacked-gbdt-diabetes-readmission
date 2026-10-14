@@ -90,6 +90,7 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     # diagnoses -> clinical groups
     for c in ["diag_1", "diag_2", "diag_3"]:
         out[f"{c}_group"] = df[c].map(icd9_group)
+        out[f"{c}_3d"] = df[c].map(icd9_3digit)  # finer code; rare codes pooled by the encoder
 
     # labs ('None' = not performed is a real level)
     out["A1Cresult"] = df["A1Cresult"]
@@ -105,6 +106,40 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     out["n_drugs_changed"] = out["n_drugs_up"] + out["n_drugs_down"]
     out["change"] = df["change"]
     out["diabetesMed"] = df["diabetesMed"]
+    return out
+
+
+ICD3_COLS = ["diag_1_3d", "diag_2_3d", "diag_3_3d"]
+HISTORY_COLS = ["n_prior_enc", "n_prior_readmit30", "prev_readmitted",
+                "prev_time_in_hospital", "prev_discharge"]
+
+
+def icd9_3digit(code) -> str:
+    """Three-character ICD-9 category, e.g. '250.83' -> '250', 'V57' -> 'V57'."""
+    if pd.isna(code):
+        return MISSING
+    return str(code).split(".")[0][:3]
+
+
+def build_history_features(df: pd.DataFrame, target_col: str) -> pd.DataFrame:
+    """Features from the same patient's EARLIER encounters only.
+
+    `df` must be sorted by encounter_id, which is used as the time order
+    (results/encounter_order_check.json). A previous encounter's label is known
+    at the current admission, because its 30-day window has already started.
+    No information from later encounters is used.
+    """
+    g = df.groupby("patient_nbr", sort=False)
+    out = pd.DataFrame(index=df.index)
+    out["n_prior_enc"] = g.cumcount().astype(float)
+    out["n_prior_readmit30"] = g[target_col].transform(
+        lambda s: s.shift(1).fillna(0).cumsum()).astype(float)
+    # plain labels: XGBoost rejects feature names containing '<', '>' or '['
+    out["prev_readmitted"] = (g["readmitted"].shift(1).fillna("none")
+                              .replace({"<30": "within30", ">30": "after30", "NO": "no"}))
+    out["prev_time_in_hospital"] = g["time_in_hospital"].shift(1).fillna(-1).astype(float)
+    out["prev_discharge"] = (g["discharge_disposition_id"].shift(1).fillna(-1)
+                             .astype(int).astype(str).replace("-1", "none"))
     return out
 
 

@@ -126,7 +126,7 @@ def build_notebook(scripts, cfg, args):
     if args.pip:
         cells.append(_cell("code", "!pip install -q " + " ".join(args.pip)))
 
-    cells.append(_cell("code", f"""import json, os, sys, platform
+    cells.append(_cell("code", f"""import json, os, sys, platform, time
 from importlib.metadata import version, PackageNotFoundError
 os.chdir("{KAGGLE_WORKDIR}")
 os.makedirs("code", exist_ok=True)
@@ -164,7 +164,15 @@ print(json.dumps(env, indent=2))
 
     for path in scripts:
         cells.append(_cell("markdown", f"## Run `{path.name}`"))
-        cells.append(_cell("code", f"%run code/{path.name}"))
+        run_cell = "\n".join([
+            "_t0 = time.time()",
+            f"%run code/{path.name}",
+            "_rf = 'results/runtime_kaggle.json'",
+            "_rt = json.load(open(_rf)) if os.path.exists(_rf) else {}",
+            f"_rt['{path.name}'] = round(time.time() - _t0, 1)",
+            "json.dump(_rt, open(_rf, 'w'), indent=2)",
+        ])
+        cells.append(_cell("code", run_cell))
 
     cells.append(_cell("code", "!ls -la results"))
 
