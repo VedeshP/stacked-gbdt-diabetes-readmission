@@ -22,6 +22,9 @@ Last updated: 2026-10-07.
 | [14] | Liu, Sue & Wu, 2024 | J. Med. Artif. Intell. | <30 vs rest | 5-fold group k-fold on patient | **Yes**; duplicate patient records also removed | SMOTE inside training folds | 11 models incl. RF, XGBoost, LSTM, LR | ROC-AUC 0.64 (XGBoost), 0.63 (RF); accuracy 0.88 | No |
 | [21] | Zarghani, 2024 | arXiv | "readmitted" (definition not explicit) | Random 70%/30% split | Not stated | Not stated | XGBoost, LightGBM, CatBoost, DT, RF, LSTM | Accuracy 92.22%, F1 0.91 (LightGBM); no ROC-AUC | No |
 | [20] | Emi-Johnson & Nkrumah, 2025 | Cureus | <30 vs rest | Stratified 80%/20% split | Not stated | None (SMOTE considered, not applied) | LR, RF, XGBoost, DNN | ROC-AUC 0.667 (XGBoost), 0.642 (LR), 0.630 (RF) | No |
+| [33] | Lu & Uddin, 2022 | Information (MDPI) | <30 vs rest | Not stated in abstract (full text blocked) | Not stated | Random under-sampling | Stacking (base + meta learners), SelectFromModel | Not in abstract | Not in abstract |
+| [29] | Salim & Ibrahim, 2026 | Healthcare (MDPI) | <30 vs rest | Nested CV (5 outer, 3 inner folds) | **No** (authors state CV did not enforce patient-level splits) | Class weights (no resampling) | LR, RF, XGBoost, LightGBM, stacking ensemble | Stacking: nested-CV ROC-AUC 0.664; calibrated ROC-AUC 0.688; Brier 0.094 | **Yes** (Platt) |
+| [32] | Afridi, Usman, Rubin & Rana, 2026 | Diabetology (MDPI) | Readmission (definition in full text) | Hold-out set; resampling only inside training folds | Not stated in abstract | SMOTENC within folds, class weights | LR, RF, ANN, XGBoost, CNN-LSTM | ROC-AUC 0.86 (CNN-LSTM, hold-out); dataset not stated in abstract, so not compared | Not in abstract |
 | — | **This work** | — | <30 vs rest | Patient-grouped stratified 5-fold; held-out patient fold as test; grouped inner CV for tuning, stacking, calibration, thresholds | **Yes**, at every step | Class weights vs none (ablation) | LR, RF, XGBoost, LightGBM, CatBoost, average, LR stack | ROC-AUC 0.684 ± 0.001, PR-AUC 0.243 ± 0.001 (LightGBM); stack 0.683 / 0.244 | **Yes** (Brier, ECE, reliability, Platt, isotonic) |
 
 Notes on individual studies:
@@ -34,6 +37,9 @@ Notes on individual studies:
 - **[20] Emi-Johnson & Nkrumah.** The study used a stratified 80/20 split and did not apply SMOTE. Its best ROC-AUC is 0.667 (XGBoost).
 
 ## 3. What the comparison shows
+
+Update 2026-10-14: Salim & Ibrahim [29] is the closest prior work: a stacking ensemble with Platt calibration on this dataset, but without patient-level splits (stated by the authors). Reference numbers [29]–[33] are provisional until the final renumbering of `paper/references.md`.
+
 
 1. Reported ROC-AUC values on this dataset cluster between about 0.63 and 0.69 when the target is readmission within 30 days and the whole population is used. Values far above this range come with caveats: age subgroups [18], accuracy-only reporting [21], or details we could not verify (Section 5).
 2. Only one of the reviewed studies [14] states that it keeps the encounters of one patient in the same fold. None applies patient grouping inside a stacking procedure.
@@ -78,6 +84,11 @@ Links to the studies in Section 2:
 | Liu, Sue & Wu 2024 [14] | https://doi.org/10.21037/jmai-24-70 (full text: https://jmai.amegroups.org/article/view/9179/html) |
 | Zarghani 2024 [21] | https://arxiv.org/abs/2406.19980 |
 | Emi-Johnson & Nkrumah 2025 [20] | https://doi.org/10.7759/cureus.82437 (full text: https://pmc.ncbi.nlm.nih.gov/articles/PMC12085305/) |
+| Salim & Ibrahim 2026 [29] | https://doi.org/10.3390/healthcare14091185 (full text: https://pmc.ncbi.nlm.nih.gov/articles/PMC13163415/) |
+| Zablah, Molina & Garcia Loureiro 2026 [30] (leakage in clinical ML) | https://doi.org/10.1016/j.jbi.2026.105016 |
+| Wang et al. 2026 [31] (elderly T2DM + heart failure cohort, SHAP) | https://doi.org/10.3389/fcvm.2025.1673159 (full text: https://pmc.ncbi.nlm.nih.gov/articles/PMC12819643/) |
+| Afridi et al. 2026 [32] | https://doi.org/10.3390/diabetology7100197 |
+| Lu & Uddin 2022 [33] | https://doi.org/10.3390/info13090436 |
 
 ## 5. Sources found but not used in the paper
 
