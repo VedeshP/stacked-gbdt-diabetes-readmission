@@ -1,0 +1,9 @@
+{
+  "n_encounters_with_earlier_encounter": 30248,
+  "label_of_previous_encounter_share": {
+    ">30": 0.7149233007140968,
+    "<30": 0.2688772811425549,
+    "NO": 0.01619941814334832
+  },
+  "note": "share of 'NO' close to 0 supports encounter_id as time order"
+}

@@ -1,5 +1,8 @@
 # Plan for the Second Draft
 
+**Status 2026-10-15: second draft complete.** All items in Section G below were done in `paper/draft.md` (full run commit c4a8ddf): Results and Conclusion written, citations only in Sections I-II, Fig. 1 (`results/fig1_methodology.png`, editable `paper/figures/fig1_methodology.drawio`), Tables I-III (`results/table1_cohort.csv`, `table2_main_results.csv`, `table3_ablations.csv`), five 2025-2026 references, AI disclosure, no TODOs. Remaining for the author: paste into the IEEE template and check page count, build equations in Word, author edits, plagiarism check.
+
+
 Status: first draft of Sections I–V exists in `paper/draft.md` (title, abstract, I–V). Results (VI) and Conclusion (VII) are not written yet. This file collects the rules agreed so far, the figures and tables we need, and every change to make for draft 2. Tick items off as they are done.
 
 ## A. Rules for the paper (keep adding here)

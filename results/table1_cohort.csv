@@ -1,0 +1,5 @@
+Subset,Encounters,Patients,Readmitted <30 days,Positive rate (%)
+Full dataset,101766,71518,11357,11.16
+After excluding death/hospice,99343,,11314,11.39
+Training set,79625,55952,9126,11.46
+Test set,19718,14038,2188,11.1

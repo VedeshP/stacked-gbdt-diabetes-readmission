@@ -1,33 +1,33 @@
 {
   "params": {
     "lr": {
-      "C": 0.0796433554014517
+      "C": 0.0734534990868495
     },
     "rf": {
-      "n_estimators": 300,
-      "max_depth": 12,
+      "n_estimators": 400,
+      "max_depth": 16,
       "min_samples_leaf": 5,
-      "max_features": 0.2955455950789638
+      "max_features": 0.48645943347289744
     },
     "xgb": {
-      "n_estimators": 400,
-      "learning_rate": 0.03135138534055296,
-      "max_depth": 5,
-      "min_child_weight": 2.401685405066297,
-      "subsample": 0.8317247442313338,
-      "colsample_bytree": 0.40450390958022575,
-      "reg_lambda": 0.10151123541362836,
-      "reg_alpha": 0.15236215735278885
+      "n_estimators": 600,
+      "learning_rate": 0.02500724504409322,
+      "max_depth": 8,
+      "min_child_weight": 4.576172340192579,
+      "subsample": 0.7359812883147545,
+      "colsample_bytree": 0.9698082787165645,
+      "reg_lambda": 8.988699732304687,
+      "reg_alpha": 2.003840573764795
     },
     "lgbm": {
       "n_estimators": 500,
-      "learning_rate": 0.0221686006920873,
-      "num_leaves": 40,
-      "min_child_samples": 18,
-      "subsample": 0.8471889405687342,
-      "colsample_bytree": 0.4323746402477565,
-      "reg_lambda": 0.01349994815607303,
-      "reg_alpha": 0.05650965138030809
+      "learning_rate": 0.011731934753228083,
+      "num_leaves": 47,
+      "min_child_samples": 12,
+      "subsample": 0.8836451987742898,
+      "colsample_bytree": 0.4203641755751426,
+      "reg_lambda": 0.0017196613608287529,
+      "reg_alpha": 0.2211742153360888
     },
     "cat": {
       "iterations": 600,
@@ -40,43 +40,42 @@
   },
   "tuning": {
     "lr": {
-      "best_cv_pr_auc": 0.2103918726786225,
+      "best_cv_pr_auc": 0.2236754228412828,
       "trials": {
-        "COMPLETE": 27,
-        "PRUNED": 13
+        "COMPLETE": 28,
+        "PRUNED": 12
       },
-      "seconds": 408.6
+      "seconds": 822.6
     },
     "rf": {
-      "best_cv_pr_auc": 0.222260068453199,
-      "trials": {
-        "COMPLETE": 9,
-        "PRUNED": 3
-      },
-      "seconds": 1031.2
-    },
-    "xgb": {
-      "best_cv_pr_auc": 0.23026236633745645,
-      "trials": {
-        "COMPLETE": 21,
-        "PRUNED": 19
-      },
-      "seconds": 593.1
-    },
-    "lgbm": {
-      "best_cv_pr_auc": 0.23307942562731568,
-      "trials": {
-        "COMPLETE": 29,
-        "PRUNED": 11
-      },
-      "seconds": 498.8
-    },
-    "cat": {
-      "best_cv_pr_auc": 0.23281973379583976,
+      "best_cv_pr_auc": 0.23608464780820274,
       "trials": {
         "COMPLETE": 4
       },
-      "seconds": 1036.6
+      "seconds": 1636.9
+    },
+    "xgb": {
+      "best_cv_pr_auc": 0.2467580287758977,
+      "trials": {
+        "COMPLETE": 11,
+        "PRUNED": 6
+      },
+      "seconds": 939.6
+    },
+    "lgbm": {
+      "best_cv_pr_auc": 0.24771374969463414,
+      "trials": {
+        "COMPLETE": 30,
+        "PRUNED": 10
+      },
+      "seconds": 747.8
+    },
+    "cat": {
+      "best_cv_pr_auc": 0.24793197536676523,
+      "trials": {
+        "COMPLETE": 4
+      },
+      "seconds": 1245.5
     }
   },
   "objective": "mean PR-AUC over 3 grouped folds",

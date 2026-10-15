@@ -1,5 +1,6 @@
 {
   "fast_mode": false,
+  "feature_set": "full",
   "n_encounters_raw": 101766,
   "exclude_expired_or_hospice": true,
   "n_excluded_expired_or_hospice": 2423,
@@ -39,7 +40,7 @@
     "citoglipton",
     "examide"
   ],
-  "n_features": 36,
-  "n_numeric_features": 14,
-  "n_categorical_features": 22
+  "n_features": 44,
+  "n_numeric_features": 17,
+  "n_categorical_features": 27
 }

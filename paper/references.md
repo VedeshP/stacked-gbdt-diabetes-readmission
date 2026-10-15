@@ -20,56 +20,55 @@ REFERENCES
 
 [10] D. H. Wolpert, "Stacked generalization," Neural Netw., vol. 5, no. 2, pp. 241–259, 1992, doi: 10.1016/S0893-6080(05)80023-1.
 
-[11] S. Kapoor and A. Narayanan, "Leakage and the reproducibility crisis in machine-learning-based science," Patterns, vol. 4, no. 9, Art. no. 100804, 2023, doi: 10.1016/j.patter.2023.100804.
+[11] S. S. Salim and A. A. Ibrahim, "A machine learning approach for predicting 30-day hospital readmission in patients with diabetes," Healthcare, vol. 14, no. 9, Art. no. 1185, 2026, doi: 10.3390/healthcare14091185.
 
-[12] F. Pedregosa et al., "Scikit-learn: Machine learning in Python," J. Mach. Learn. Res., vol. 12, pp. 2825–2830, 2011. [Online]. Available: https://jmlr.org/papers/v12/pedregosa11a.html
+[12] L. Wang, C. Wei, Y. Chen, D.-S. Lu, H.-X. Zhang, and M. Yang, "Machine learning-based prediction model for 30-day readmission risk in elderly patients with type 2 diabetes mellitus and heart failure: A retrospective cohort study with SHAP interpretability analysis," Front. Cardiovasc. Med., vol. 12, Art. no. 1673159, 2026, doi: 10.3389/fcvm.2025.1673159.
 
-[13] B. Van Calster, D. J. McLernon, M. van Smeden, L. Wynants, E. W. Steyerberg, P. Bossuyt, G. S. Collins, P. Macaskill, K. G. M. Moons, and A. J. Vickers, "Calibration: The Achilles heel of predictive analytics," BMC Med., vol. 17, Art. no. 230, 2019, doi: 10.1186/s12916-019-1466-7.
+[13] A. A. Afridi, M. Usman, D. J. Rubin, and M. R. R. Rana, "A robust and explainable framework for predicting hospital readmission in patients with diabetes," Diabetology, vol. 7, no. 10, Art. no. 197, 2026, doi: 10.3390/diabetology7100197.
 
-[14] V. B. Liu, L. Y. Sue, and Y. Wu, "Comparison of machine learning models for predicting 30-day readmission rates for patients with diabetes," J. Med. Artif. Intell., vol. 7, Art. no. 23, 2024, doi: 10.21037/jmai-24-70.
+[14] S. Kapoor and A. Narayanan, "Leakage and the reproducibility crisis in machine-learning-based science," Patterns, vol. 4, no. 9, Art. no. 100804, 2023, doi: 10.1016/j.patter.2023.100804.
 
-[15] S. M. Lundberg and S.-I. Lee, "A unified approach to interpreting model predictions," in Adv. Neural Inf. Process. Syst., vol. 30, 2017, pp. 4765–4774. [Online]. Available: https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html
+[15] I. Zablah, Y. Molina, and A. Garcia Loureiro, "Patient-level and temporal data leakage can inflate performance in medication recommendation models: A critical appraisal of the original KATMed publication," J. Biomed. Inform., vol. 178, Art. no. 105016, 2026, doi: 10.1016/j.jbi.2026.105016.
 
-[16] S. M. Lundberg, G. Erion, H. Chen, A. DeGrave, J. M. Prutkin, B. Nair, R. Katz, J. Himmelfarb, N. Bansal, and S.-I. Lee, "From local explanations to global understanding with explainable AI for trees," Nat. Mach. Intell., vol. 2, no. 1, pp. 56–67, 2020, doi: 10.1038/s42256-019-0138-9.
+[16] F. Pedregosa et al., "Scikit-learn: Machine learning in Python," J. Mach. Learn. Res., vol. 12, pp. 2825–2830, 2011. [Online]. Available: https://jmlr.org/papers/v12/pedregosa11a.html
 
-[17] M. S. Bhuvan, A. Kumar, A. Zafar, and V. Kishore, "Identifying diabetic patients with high risk of readmission," 2016, arXiv:1602.04257. [Online]. Available: https://arxiv.org/abs/1602.04257
+[17] B. Van Calster, D. J. McLernon, M. van Smeden, L. Wynants, E. W. Steyerberg, P. Bossuyt, G. S. Collins, P. Macaskill, K. G. M. Moons, and A. J. Vickers, "Calibration: The Achilles heel of predictive analytics," BMC Med., vol. 17, Art. no. 230, 2019, doi: 10.1186/s12916-019-1466-7.
 
-[18] D. Mingle, "Predicting diabetic readmission rates: Moving beyond HbA1c," Curr. Trends Biomed. Eng. Biosci., vol. 7, no. 3, pp. 55–65, 2017, doi: 10.19080/CTBEB.2017.07.555715.
+[18] G. S. Collins et al., "TRIPOD+AI statement: Updated guidance for reporting clinical prediction models that use regression or machine learning methods," BMJ, vol. 385, Art. no. e078378, 2024, doi: 10.1136/bmj-2023-078378.
 
-[19] Y. Shang, K. Jiang, L. Wang, Z. Zhang, S. Zhou, Y. Liu, J. Dong, and H. Wu, "The 30-days hospital readmission risk in diabetic patients: Predictive modeling with machine learning classifiers," BMC Med. Inform. Decis. Mak., vol. 21, suppl. 2, Art. no. 57, 2021, doi: 10.1186/s12911-021-01423-y.
+[19] V. B. Liu, L. Y. Sue, and Y. Wu, "Comparison of machine learning models for predicting 30-day readmission rates for patients with diabetes," J. Med. Artif. Intell., vol. 7, Art. no. 23, 2024, doi: 10.21037/jmai-24-70.
 
-[20] O. G. Emi-Johnson and K. J. Nkrumah, "Predicting 30-day hospital readmission in patients with diabetes using machine learning on electronic health record data," Cureus, vol. 17, no. 4, Art. no. e82437, 2025, doi: 10.7759/cureus.82437.
+[20] S. M. Lundberg and S.-I. Lee, "A unified approach to interpreting model predictions," in Adv. Neural Inf. Process. Syst., vol. 30, 2017, pp. 4765–4774. [Online]. Available: https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html
 
-[21] A. Zarghani, "Comparative analysis of LSTM neural networks and traditional machine learning models for predicting diabetes patient readmission," 2024, arXiv:2406.19980. [Online]. Available: https://arxiv.org/abs/2406.19980
+[21] S. M. Lundberg, G. Erion, H. Chen, A. DeGrave, J. M. Prutkin, B. Nair, R. Katz, J. Himmelfarb, N. Bansal, and S.-I. Lee, "From local explanations to global understanding with explainable AI for trees," Nat. Mach. Intell., vol. 2, no. 1, pp. 56–67, 2020, doi: 10.1038/s42256-019-0138-9.
 
-[22] J. C. Platt, "Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods," in Advances in Large Margin Classifiers, A. J. Smola, P. Bartlett, B. Schölkopf, and D. Schuurmans, Eds. Cambridge, MA, USA: MIT Press, 1999, pp. 61–74.
+[22] M. S. Bhuvan, A. Kumar, A. Zafar, and V. Kishore, "Identifying diabetic patients with high risk of readmission," 2016, arXiv:1602.04257. [Online]. Available: https://arxiv.org/abs/1602.04257
 
-[23] B. Zadrozny and C. Elkan, "Transforming classifier scores into accurate multiclass probability estimates," in Proc. 8th ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., 2002, pp. 694–699, doi: 10.1145/775047.775151.
+[23] D. Mingle, "Predicting diabetic readmission rates: Moving beyond HbA1c," Curr. Trends Biomed. Eng. Biosci., vol. 7, no. 3, pp. 55–65, 2017, doi: 10.19080/CTBEB.2017.07.555715.
 
-[24] A. Niculescu-Mizil and R. Caruana, "Predicting good probabilities with supervised learning," in Proc. 22nd Int. Conf. Mach. Learn. (ICML), 2005, pp. 625–632, doi: 10.1145/1102351.1102430.
+[24] Y. Shang, K. Jiang, L. Wang, Z. Zhang, S. Zhou, Y. Liu, J. Dong, and H. Wu, "The 30-days hospital readmission risk in diabetic patients: Predictive modeling with machine learning classifiers," BMC Med. Inform. Decis. Mak., vol. 21, suppl. 2, Art. no. 57, 2021, doi: 10.1186/s12911-021-01423-y.
 
-[25] T. Akiba, S. Sano, T. Yanase, T. Ohta, and M. Koyama, "Optuna: A next-generation hyperparameter optimization framework," in Proc. 25th ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., 2019, pp. 2623–2631, doi: 10.1145/3292500.3330701.
+[25] O. G. Emi-Johnson and K. J. Nkrumah, "Predicting 30-day hospital readmission in patients with diabetes using machine learning on electronic health record data," Cureus, vol. 17, no. 4, Art. no. e82437, 2025, doi: 10.7759/cureus.82437.
 
-[26] J. Bergstra, R. Bardenet, Y. Bengio, and B. Kégl, "Algorithms for hyper-parameter optimization," in Adv. Neural Inf. Process. Syst., vol. 24, 2011. [Online]. Available: https://proceedings.neurips.cc/paper/2011/hash/86e8f7ab32cfd12577bc2619bc635690-Abstract.html
+[26] A. Zarghani, "Comparative analysis of LSTM neural networks and traditional machine learning models for predicting diabetes patient readmission," 2024, arXiv:2406.19980. [Online]. Available: https://arxiv.org/abs/2406.19980
 
-[27] B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap. New York, NY, USA: Chapman & Hall, 1993.
+[27] H. Lu and S. Uddin, "Explainable stacking-based model for predicting hospital readmission for diabetic patients," Information, vol. 13, no. 9, Art. no. 436, 2022, doi: 10.3390/info13090436.
 
-[28] G. S. Collins et al., "TRIPOD+AI statement: Updated guidance for reporting clinical prediction models that use regression or machine learning methods," BMJ, vol. 385, Art. no. e078378, 2024, doi: 10.1136/bmj-2023-078378.
+[28] T. Akiba, S. Sano, T. Yanase, T. Ohta, and M. Koyama, "Optuna: A next-generation hyperparameter optimization framework," in Proc. 25th ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., 2019, pp. 2623–2631, doi: 10.1145/3292500.3330701.
 
+[29] J. Bergstra, R. Bardenet, Y. Bengio, and B. Kégl, "Algorithms for hyper-parameter optimization," in Adv. Neural Inf. Process. Syst., vol. 24, 2011. [Online]. Available: https://proceedings.neurips.cc/paper/2011/hash/86e8f7ab32cfd12577bc2619bc635690-Abstract.html
 
-[29] S. S. Salim and A. A. Ibrahim, "A machine learning approach for predicting 30-day hospital readmission in patients with diabetes," Healthcare, vol. 14, no. 9, Art. no. 1185, 2026, doi: 10.3390/healthcare14091185.
+[30] J. C. Platt, "Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods," in Advances in Large Margin Classifiers, A. J. Smola, P. Bartlett, B. Schölkopf, and D. Schuurmans, Eds. Cambridge, MA, USA: MIT Press, 1999, pp. 61–74.
 
-[30] I. Zablah, Y. Molina, and A. Garcia Loureiro, "Patient-level and temporal data leakage can inflate performance in medication recommendation models: A critical appraisal of the original KATMed publication," J. Biomed. Inform., vol. 178, Art. no. 105016, 2026, doi: 10.1016/j.jbi.2026.105016.
+[31] B. Zadrozny and C. Elkan, "Transforming classifier scores into accurate multiclass probability estimates," in Proc. 8th ACM SIGKDD Int. Conf. Knowl. Discov. Data Min., 2002, pp. 694–699, doi: 10.1145/775047.775151.
 
-[31] L. Wang, C. Wei, Y. Chen, D.-S. Lu, H.-X. Zhang, and M. Yang, "Machine learning-based prediction model for 30-day readmission risk in elderly patients with type 2 diabetes mellitus and heart failure: A retrospective cohort study with SHAP interpretability analysis," Front. Cardiovasc. Med., vol. 12, Art. no. 1673159, 2026, doi: 10.3389/fcvm.2025.1673159.
+[32] A. Niculescu-Mizil and R. Caruana, "Predicting good probabilities with supervised learning," in Proc. 22nd Int. Conf. Mach. Learn. (ICML), 2005, pp. 625–632, doi: 10.1145/1102351.1102430.
 
-[32] A. A. Afridi, M. Usman, D. J. Rubin, and M. R. R. Rana, "A robust and explainable framework for predicting hospital readmission in patients with diabetes," Diabetology, vol. 7, no. 10, Art. no. 197, 2026, doi: 10.3390/diabetology7100197.
-
-[33] H. Lu and S. Uddin, "Explainable stacking-based model for predicting hospital readmission for diabetic patients," Information, vol. 13, no. 9, Art. no. 436, 2022, doi: 10.3390/info13090436.
+[33] B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap. New York, NY, USA: Chapman & Hall, 1993.
 
 
 VERIFICATION NOTES (delete before submission)
 
 Checked online on 2026-10-07 and 2026-10-14: authors, title, venue, year, volume, issue and pages or article number of every entry, using publisher pages, Crossref, Europe PMC and Semantic Scholar. All DOIs resolve at doi.org.
-NeurIPS entries without DOI ([8], [9], [13] and the TPE paper) link to the official proceedings page; page numbers for LightGBM and TPE were removed because they could not be confirmed (IEEE style allows proceedings citations without pages when a URL is given).
+NeurIPS entries without DOI ([8], [9], [17] and the TPE paper) link to the official proceedings page; page numbers for LightGBM and TPE were removed because they could not be confirmed (IEEE style allows proceedings citations without pages when a URL is given).
 Mingle (Curr. Trends Biomed. Eng. Biosci.): the journal page cites the article as 7(3):555707 while the DOI ends in 555715; the DOI is used.

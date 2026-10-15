@@ -17,8 +17,11 @@ number_inpatient,numeric,21
 number_diagnoses,numeric,16
 total_prior_visits,numeric,47
 diag_1_group,categorical,10
+diag_1_3d,categorical,683
 diag_2_group,categorical,10
+diag_2_3d,categorical,672
 diag_3_group,categorical,10
+diag_3_3d,categorical,695
 A1Cresult,categorical,4
 max_glu_serum,categorical,4
 metformin,categorical,4
@@ -35,3 +38,8 @@ n_drugs_down,numeric,4
 n_drugs_changed,numeric,5
 change,categorical,2
 diabetesMed,categorical,2
+n_prior_enc,numeric,40
+n_prior_readmit30,numeric,23
+prev_readmitted,categorical,4
+prev_time_in_hospital,numeric,15
+prev_discharge,categorical,24

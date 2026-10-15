@@ -1,6 +1,8 @@
 {
+  "cpu_count": 4,
+  "platform": "Linux-6.18.48+-x86_64-with-glibc2.39",
   "python": "3.13.15",
-  "git_commit": "81e251d",
+  "git_commit": "c4a8ddf",
   "scripts": [
     "01_eda.py",
     "02_preprocess.py",

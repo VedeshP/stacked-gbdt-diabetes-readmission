@@ -20,7 +20,8 @@ LABEL = {"number_inpatient": "prior-year inpatient visits",
          "n_prior_readmit30": "number of earlier 30-day readmissions",
          "prev_readmitted": "outcome of the previous encounter",
          "diag_1_3d": "primary diagnosis (3-digit)",
-         "number_emergency": "prior-year emergency visits"}
+         "number_emergency": "prior-year emergency visits",
+         "payer_code": "payer code", "medical_specialty": "admitting specialty"}
 
 
 def r3(x):
