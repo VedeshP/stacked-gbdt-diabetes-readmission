@@ -1,0 +1,18 @@
+Ablation,Setting,ROC-AUC,PR-AUC,Brier,ECE
+Features (LightGBM),base,0.682,0.244,0.0929,
+Features (LightGBM),base + ICD-9 3-digit,0.686,0.245,0.0928,
+Features (LightGBM),base + patient history,0.691,0.254,0.0922,
+Features (LightGBM),full,0.693,0.254,0.0922,
+Class weights,"Logistic regression, none",0.677,0.227,0.0938,0.0069
+Class weights,"Logistic regression, weighted",0.678,0.226,0.2189,0.3435
+Class weights,"Random forest, none",0.684,0.247,0.0926,0.0066
+Class weights,"Random forest, weighted",0.680,0.230,0.1631,0.2574
+Class weights,"XGBoost, none",0.691,0.249,0.0924,0.0041
+Class weights,"XGBoost, weighted",0.687,0.242,0.1935,0.3056
+Class weights,"LightGBM, none",0.693,0.254,0.0922,0.0084
+Class weights,"LightGBM, weighted",0.692,0.245,0.2071,0.3297
+Class weights,"CatBoost, none",0.693,0.257,0.0920,0.0047
+Class weights,"CatBoost, weighted",0.693,0.249,0.2064,0.3274
+Calibration (stack),none,0.695,0.259,0.0919,0.0051
+Calibration (stack),sigmoid,0.695,0.259,0.0919,0.0050
+Calibration (stack),isotonic,0.694,0.251,0.0919,0.0044

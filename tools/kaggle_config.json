@@ -1,0 +1,6 @@
+{
+  "username": "",
+  "dataset": "vedeshp/diabetes-130-us-hospitals-uci-296",
+  "slug_prefix": "readmission",
+  "project_title": "Stacked Gradient Boosting for 30-Day Readmission Prediction"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Diabetes 130-US Hospitals 1999-2008 (UCI 296)",
+  "id": "vedeshp/diabetes-130-us-hospitals-uci-296",
+  "subtitle": "Unmodified UCI copy for 30-day readmission prediction",
+  "description": "Unmodified copy of the UCI Machine Learning Repository dataset 296, 'Diabetes 130-US Hospitals for Years 1999-2008' (https://archive.ics.uci.edu/dataset/296), licensed CC BY 4.0. 101,766 inpatient encounters, 50 columns. Files: diabetic_data.csv (encounters), IDS_mapping.csv (ID lookup for admission type, discharge disposition, admission source). Source study: B. Strack et al., 'Impact of HbA1c Measurement on Hospital Readmission Rates: Analysis of 70,000 Clinical Database Patient Records,' BioMed Research International, 2014, doi:10.1155/2014/781670. Note: missing values are encoded as '?'; the string 'None' in A1Cresult and max_glu_serum means 'test not performed' and is a valid category.",
+  "licenses": [{"name": "CC-BY-4.0"}],
+  "keywords": ["health", "diabetes", "classification", "tabular"]
+}
