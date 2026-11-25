@@ -54,3 +54,22 @@ python tools/kaggle_nb.py push --all --env N_TRIALS=80 N_SEEDS=5            # ch
 ```
 
 Each kernel starts from a clean machine, so include any earlier script whose outputs a later one needs. Settings (Kaggle username, dataset id, slug prefix) live in `tools/kaggle_config.json`.
+
+## Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/chetangadhiya5062">
+        <img src="https://github.com/chetangadhiya5062.png" width="100" alt="Chetan Gadhiya"/><br/>
+        <b>Chetan Gadhiya</b>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/vedeshP">
+        <img src="https://github.com/vedeshP.png" width="100" alt="Vedesh Pandya"/><br/>
+        <b>Vedesh Pandya</b>
+      </a>
+    </td>
+  </tr>
+</table>
